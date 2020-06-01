@@ -25,14 +25,12 @@ expire_date=$(0</dev/null 2>/dev/null openssl s_client -connect "$HOST:$PORT" -s
 expire_secs=$("$DATE" --date "$expire_date" +%s)
 remaining_secs=$(( expire_secs - $(date +%s) ))
 
-echo "Expire at $expire_date"
-
 remaining_days=$(echo "scale=2; $remaining_secs / (24 * 3600)" | bc)
 if [ $remaining_secs -lt $(( DAYS * 24 * 3600 )) ]
 then
-    echo "BAD The certificate remains $remaining_days days"
+    echo "ERROR Expire after $remaining_days days, $expire_date"
     exit 1
 else
-    echo "GOOD The certificate remains $remaining_days days"
+    echo "OK Expire after $remaining_days days, $expire_date"
     exit 0
 fi
