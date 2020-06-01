@@ -15,3 +15,9 @@
     
     $ DATE=gdate ./cert-expire-alert.sh elpa.zilongshanren.com
     ERROR Expire after 11.97 days, Jun 13 17:37:48 2020 GMT
+
+## Emacs China & Emacs China ELPA 证书快过期了没有？
+
+![](https://github.com/xuchunyang/cert-expire-alert/workflows/emacs-china-daily-check/badge.svg)
+
+上面这个 GitHub Action 每天 0 点都会检查 https://emacs-china.org 和 https://elpa.emacs-china.org 的证书，如果快过期了，Action 就会失败。

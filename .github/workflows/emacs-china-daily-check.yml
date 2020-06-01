@@ -1,4 +1,4 @@
-name: daily check
+name: emacs-china-daily-check
 
 on:
   push:
