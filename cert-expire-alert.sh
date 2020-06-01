@@ -17,10 +17,12 @@ remaining_secs=$(( expire_secs - $(date +%s) ))
 
 echo "Expire at $expire_date"
 
-if [ $remaining_secs -lt $(( 14 * 24 * 3600 )) ]
+remaining_days=$(echo "scale=2; $remaining_secs / (24 * 3600)" | bc)
+if [ $remaining_secs -lt $(( DAYS * 24 * 3600 )) ]
 then
-    echo "WARNING The certificate will expire soon"
+    echo "BAD The certificate remains $remaining_days days"
     exit 1
 else
-    echo "The certificate is good"
+    echo "GOOD The certificate remains $remaining_days days"
+    exit 0
 fi
