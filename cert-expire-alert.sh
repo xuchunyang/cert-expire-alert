@@ -2,6 +2,16 @@
 
 set -euf
 
+if [ $# -lt 1 ] || [ "$1" = "--help" ]
+then
+    echo "usage: $(basename "$0") hostname" 1>&2
+    exit 1
+fi
+
+HOST=$1
+PORT=443
+DAYS=14
+
 DATE=${DATE:-date}
 
 if ! >/dev/null 2>&1 $DATE --version; then
