@@ -1,0 +1,18 @@
+name: daily check
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # UTC 每天 0 点一次
+    - cron: '0 0 * * *'
+
+jobs:
+  check_cert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: emacs-china.org
+        run: ./cert-expire-alert.sh emacs-china.org
+      - name: elpa.emacs-china.org
+        run: ./cert-expire-alert.sh elpa.emacs-china.org
