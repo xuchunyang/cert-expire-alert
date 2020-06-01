@@ -9,7 +9,7 @@ if ! >/dev/null 2>&1 $DATE --version; then
     exit 1
 fi
 
-expire_date=$(0</dev/null 2>/dev/null openssl s_client -connect "$1" |
+expire_date=$(0</dev/null 2>/dev/null openssl s_client -connect "$HOST:$PORT" -servername "$HOST" |
                   openssl x509 -noout -enddate |
                   cut -d = -f 2)
 expire_secs=$("$DATE" --date "$expire_date" +%s)
